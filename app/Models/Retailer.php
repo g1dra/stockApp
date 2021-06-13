@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Facades\App\Clients\ClientFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,6 +14,16 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Retailer newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Retailer query()
  * @mixin \Eloquent
+ * @property int $id
+ * @property string $name
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Stock[] $stock
+ * @property-read int|null $stock_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Retailer whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Retailer whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Retailer whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Retailer whereUpdatedAt($value)
  */
 class Retailer extends Model
 {
@@ -27,5 +38,10 @@ class Retailer extends Model
     public function stock()
     {
         return $this->hasMany(Stock::class);
+    }
+
+    public function client()
+    {
+        return ClientFactory::make($this);
     }
 }

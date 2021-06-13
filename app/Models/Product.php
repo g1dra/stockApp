@@ -19,6 +19,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string $name
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Stock[] $stock
+ * @property-read int|null $stock_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereName($value)
  */
 class Product extends Model
 {
